@@ -1,8 +1,17 @@
-= AdminFaces Starter project
+Renato este é seu projeto 
 
 
-A simple project to get you started with https://github.com/adminfaces[AdminFaces^].
+Nós temos uma pequena parte ilustrativa para vc ver como é o funcionamento.
 
+
+Nesse projeto as seguintes tecnologias foram empregadas na arquitetura: Java 8, Jsf(Mojarra), PrimeFaces, CDI, JPA. 
+Gerenciador de build e dependencias:  Apache Maven.
+Gerenciador de Versões: Git.
+
+Obs: Não há conexão com banco de dados. Tudo isso deve ser implementado do zero dentro do projeto.
+
+
+Segue as telas existentes até o momento. Eu já construi todo o template ok.
 .Login page
 image:starter1.png[]
 
@@ -15,10 +24,6 @@ image:starter3.png[]
 .Car form responsive
 image:starter4.png[]
 
-== Running
 
-Tested on *Tomcat 8.5.3*
 
-== Demo
-
-A live demo is available on Openshift here: http://starter-adminfaces.rhcloud.com/admin-starter/
+teste realizado no Tomcat 8.5.3, porém eu configurei para rodar no Jbosse, Wildfly e no GlassFish também.
