@@ -27,3 +27,15 @@ image:starter4.png[]
 
 
 teste realizado no Tomcat 8.5.3, porém eu configurei para rodar no Jbosse, Wildfly e no GlassFish também.
+
+
+Importantes.
+Amigão iremos usar << --Contextos e Injeção de Dependência (CDI)-->> , especificado por JSR-299 , é uma parte integrante do Java EE e fornece uma arquitetura que permite que os componentes Java EE, como servlets, enterprise beans e JavaBeans, existam dentro do ciclo de vida de um aplicativo. blz?
+
+JSR-299 é uma especificação(Sao interfaces, certo?) entao alguem precisa implementar essas interfaces.
+
+Te apresento a Weld, isso mesmo Weld. (prefiro spring mermo q java II kkk)
+
+é a implementação de referência do CDI para a Plataforma Java EE -  gerenciando o ciclo de vida contextual ,uma das partes mais importantes e populares do Java EE. A Weld está integrada em muitos servidores de aplicativos Java EE, como WildFly , JBoss Enterprise Application Platform , GlassFish , Oracle WebLogic Server , WebSphere Application Server e outros. Weld também pode ser usado em recipientes de servlet simples (Tomcat, Jetty) ou Java SE. 
+
+Pensei numa arquitetura flexível, da pra rodar em todos esses servers ai descritos. Alguns delas ja tem a implementação por default. 
