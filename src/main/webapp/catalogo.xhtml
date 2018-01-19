@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:adm="http://github.com/adminfaces" template="#{layoutMB.layout}">
+
+	<ui:define name="title">
+      Gerenciar Catálogo
+    </ui:define>
+
+	<ui:define name="body">
+
+
+
+
+
+		<h:form>
+			<div class="box box-primary">
+				<div class="box-header with-border">
+				     <div id="main-buttons" class="hidden-sm hidden-xs">
+					<p:commandButton value="Marca" icon="fa fa-cogs"
+					action="marca-list?faces-redirect=true"	styleClass="btn-primary" />
+					<p:spacer width="5" />
+					<p:commandButton value="Veículo" icon="fa fa-cogs"
+						styleClass="btn-primary" />
+						</div>
+				</div>
+
+
+
+			</div>
+  <p:separator/>
+			
+		</h:form>
+	</ui:define>
+
+</ui:composition>
