@@ -48,23 +48,12 @@ public class GerenciarMarcaMB implements Serializable {
 	}
 
 	public void excluirMarca() {
-		listaMarcaExcluir.clear();
-		for (Marca marca : listaMarca) {
-			if (marca.isSelecionado() == false) {
-				listaMarcaExcluir.add(marca);
-			}
-		}
-		listaMarca.addAll(listaMarcaExcluir);
+
 	}
 
-	public void marcarExclusaoSelecionada(Marca marca) {
-		if (marca.isSelecionado() == false) {
-			marca.setSelecionado(true);
-			listaMarcaExcluir.add(marca);
-		} else {
-			marca.setSelecionado(false);
-			listaMarcaExcluir.remove(marca);
-		}
+	public String redirectEditarMarca(Integer marcaId) {
+
+		return "nova-marca.xhtml?faces-redirect=true&marcaId=" + marcaId;
 	}
 
 	public Marca getMarca() {

@@ -1,120 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui"
-                xmlns:adm="http://github.com/adminfaces"
-                template="#{layoutMB.layout}">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:adm="http://github.com/adminfaces" template="#{layoutMB.layout}">
 
-    <ui:define name="head-end">
-        <style type="text/css">
-            .ui-datatable .ui-datatable-header {
-                text-align: right !important;
-            }
+	<ui:define name="head-end">
+		<style type="text/css">
+.ui-datatable .ui-datatable-header {
+	text-align: right !important;
+}
+</style>
+	</ui:define>
 
-        </style>
-    </ui:define>
-
-    <ui:define name="title">
+	<ui:define name="title">
        Marcas
     </ui:define>
 
-    <ui:define name="description">
+	<ui:define name="description">
       Gerenciar marcas
     </ui:define>
 
-    <ui:define name="body">
-        <adm:breadcrumb title="Car list"/>
+	<ui:define name="body">
+		<adm:breadcrumb title="Car list" />
 
-        <h:form id="marcaList">
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <div id="main-buttons" class="hidden-sm hidden-xs">
-                        <p:commandButton action="nova-marca?faces-redirect=true" icon="fa fa-plus"
-                                         value="Marca" styleClass="btn-primary"/>
-                        <p:spacer width="5"/>
-                        <p:commandButton value="Excluir Selecionado" icon="fa fa-trash" styleClass="btn-danger" id="botaoExcluir"
-                                          action="#{gerenciarMarcaMB.excluirMarca()}"
-                                         disabled="#{empty gerenciarMarcaMB.listaMarcaExcluir or gerenciarMarcaMB.listaMarcaExcluir.size() == 0}"
-                                         process="@this">
-                            <p:confirm header="Confirmação" message="Tem certeza?" icon="ui-icon-danger">
-                            
-                            </p:confirm>
-                        </p:commandButton>
-                        <p:spacer width="5"/>
-                        <p:commandButton value="Ver Selecionado" update="@(.ui-dialog)" styleClass="btn-info"
-                                         disabled="#{empty carListMB.selectedCars or carListMB.selectedCars.size() == 0}"
-                                         oncomplete="PF('selectedCars').show()" icon="fa fa-search"/>
-                    </div>
+		<h:form id="marcaList">
+			<div class="box box-primary">
+				<div class="box-header with-border">
+					<div id="main-buttons" class="hidden-sm hidden-xs">
+						<p:commandButton action="nova-marca?faces-redirect=true"
+							icon="fa fa-plus" value="Marca" styleClass="btn-primary" />
+						<p:spacer width="5" />
 
-                  
 
-                    <p:separator/>
-                    <p:dataTable id="tabela-marcas" widgetVar="marcasTable" var="m" value="#{gerenciarMarcaMB.listaMarca}" rows="5" 
-                                 rowKey="#{m.id}" lazy="true" paginator="true" emptyMessage="Nenhum resultado encontrado"
-                                
-                                 paginatorPosition="bottom" 
-                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {JumpToPageDropdown}"
-                                 currentPageReportTemplate="[ {startRecord} to {endRecord} of {totalRecords} ]"
-                                 rowsPerPageTemplate="5,10,15,20,30">
+					</div>
 
-                        <p:ajax event="rowSelectCheckbox" update="@(.ui-button, .ui-confirm-dialog)"/>
-                        <p:ajax event="rowUnselectCheckbox" update="@(.ui-button, .ui-confirm-dialog)"/>
-                        <p:ajax event="rowSelect" update="@(.ui-button, .ui-confirm-dialog)"/>
-                        <p:ajax event="rowUnselect" update="@(.ui-button, .ui-confirm-dialog)"/>
-                      
- 							<p:column>
- 							
- 							<p:selectBooleanCheckbox >
- 							<p:ajax event="change" process="@this" update="marcaList:botaoExcluir" listener="#{gerenciarMarcaMB.marcarExclusaoSelecionada(m)}"/>
- 							
- 							</p:selectBooleanCheckbox>
- 							
- 							</p:column>
- 							<p:column headerText="Código">
-                          
-                             <p:link value="#{m.id}" outcome="car-form.xhtml" >
-                                <f:param name="id" value="#{c.id}"/>
-                            </p:link>
 
-                        </p:column>
-                        
-                        <p:column headerText="Nome">
-                            
-                             <p:link value="#{m.nome}" outcome="car-form.xhtml" >
-                                <f:param name="id" value="#{c.id}"/>
-                            </p:link>
 
-                        </p:column>
+					<p:separator />
+					<p:dataTable id="tabela-marcas" widgetVar="marcasTable" var="m"
+						value="#{gerenciarMarcaMB.listaMarca}" rows="5" rowKey="#{m.id}"
+						lazy="true" paginator="true"
+						emptyMessage="Nenhum resultado encontrado"
+						paginatorPosition="bottom"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {JumpToPageDropdown}"
+						currentPageReportTemplate="[ {startRecord} to {endRecord} of {totalRecords} ]"
+						rowsPerPageTemplate="5,10,15,20,30">
 
-                    </p:dataTable>
-                   
-                </div>
-            </div>
-            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" styleClass="box-danger">
-                <p:commandButton  value="Sim" type="button" styleClass="btn-primary ui-confirmdialog-yes" title="Confirmação"
-                                 icon="fa fa-check">
-                                 
-                                
-                                 </p:commandButton>
-                <p:commandButton value="Não" type="button" styleClass="btn-danger ui-confirmdialog-no"
-                                 icon="fa fa-close"/>
-            </p:confirmDialog>
-        </h:form>
+						<p:ajax event="rowSelectCheckbox"
+							update="@(.ui-button, .ui-confirm-dialog)" />
+						<p:ajax event="rowUnselectCheckbox"
+							update="@(.ui-button, .ui-confirm-dialog)" />
+						<p:ajax event="rowSelect"
+							update="@(.ui-button, .ui-confirm-dialog)" />
+						<p:ajax event="rowUnselect"
+							update="@(.ui-button, .ui-confirm-dialog)" />
 
-        <p:dialog header="Selected cars" widgetVar="selectedCars" height="250"
-                  width="400" responsive="true" styleClass="box-success">
-            <p:dataList id="selectedCarsList" value="#{carListMB.selectedCars}" var="car"
-                        type="definition">
+
+						<p:column headerText="Código">
+							#{m.id}
+						</p:column>
+						<p:column headerText="Nome">
+							#{m.nome}
+						</p:column>
+
+
+
+
+						<p:column headerText="Ações">
+
+							<p:commandButton icon="fa fa-pencil" styleClass="btn-primary"
+								action="#{gerenciarMarcaMB.redirectEditarMarca(m.id)}">
+								<f:param name="marcaId" value="#{m.id}" />
+							</p:commandButton>
+
+							<p:commandButton icon="fa fa-trash" styleClass="btn-danger"
+								action="nova-marca?faces-redirect=true">
+								<f:param name="marcaId" value="#{m.id}" />
+							</p:commandButton>
+
+
+						</p:column>
+
+					</p:dataTable>
+
+				</div>
+			</div>
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+				styleClass="box-danger">
+				<p:commandButton value="Sim" type="button"
+					styleClass="btn-primary ui-confirmdialog-yes" title="Confirmação"
+					icon="fa fa-check">
+
+
+				</p:commandButton>
+				<p:commandButton value="Não" type="button"
+					styleClass="btn-danger ui-confirmdialog-no" icon="fa fa-close" />
+			</p:confirmDialog>
+		</h:form>
+
+		<p:dialog header="Selected cars" widgetVar="selectedCars" height="250"
+			width="400" responsive="true" styleClass="box-success">
+			<p:dataList id="selectedCarsList" value="#{carListMB.selectedCars}"
+				var="car" type="definition">
                 ID: #{car.id} - Name: #{car.name} - Model: #{car.model}
             </p:dataList>
-        </p:dialog>
+		</p:dialog>
 
-    </ui:define>
+	</ui:define>
 
 </ui:composition>
-                      
-                       
 
-                        
-                     
-                       
+
+
+
+
+
+
+

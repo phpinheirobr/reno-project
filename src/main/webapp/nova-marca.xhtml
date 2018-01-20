@@ -10,9 +10,7 @@
 
     <ui:define name="body">
         <f:metadata>
-            <f:viewParam name="id" value="#{carFormMB.id}" converter="javax.faces.Long"/>
-            <!-- use view action if you are in a Java EE 7 server: <f:viewAction action="#{carFormMB.init()}"/>-->
-            <f:event type="preRenderView" listener="#{carFormMB.init}"/>
+            
         </f:metadata>
 
         <adm:breadcrumb title="#{empty carFormMB.id ? 'New Car' : 'Car '.concat(carFormMB.id)}" link="car-form.xhtml?id=#{carFormMB.id}"/>
@@ -64,13 +62,21 @@
 
                     <div class="ui-g ui-fluid">
                         
+                      <div class="ui-g-12">
+                            <p:outputLabel value="Código" for="inptId" rendered="#{novaMarcaMB.marca.id > 0 }"/>
+                        </div>
+                        <div class="ui-g-12">
+                            <p:inputText id="inptId" disabled="true" value="#{novaMarcaMB.marca.id} " rendered="#{novaMarcaMB.marca.id > 0 }"/>
+                        </div>
+                        
+                      
                       
                         
                         <div class="ui-g-12">
                             <p:outputLabel value="Nome" for="inptName"/>
                         </div>
                         <div class="ui-g-12">
-                            <p:inputText id="inptName" value="#{gerenciarMarcaMB.marca.nome}"/>
+                            <p:inputText id="inptName" value="#{novaMarcaMB.marca.nome}"/>
                         </div>
                         
                     </div>
