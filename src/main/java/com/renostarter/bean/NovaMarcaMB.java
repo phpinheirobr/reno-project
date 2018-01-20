@@ -1,10 +1,13 @@
 package com.renostarter.bean;
 
+import static com.renostarter.util.Utils.addDetailMessage;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
@@ -29,6 +32,7 @@ public class NovaMarcaMB implements Serializable {
 	public void init() {
 
 		recuperaIdMarca();
+		inicializaObjetos();
 		recuperarMarcaPorId();
 	}
 
@@ -45,15 +49,43 @@ public class NovaMarcaMB implements Serializable {
 			this.marcaId = Integer.parseInt(marcaId);
 		}
 	}
-	
-	public void recuperarMarcaPorId(){
-		 
+
+	public void recuperarMarcaPorId() {
+
 		List<Marca> marcas = UtilMock.getMarcas(5);
 		for (Marca marca : marcas) {
-			if(marca.getId().equals(marcaId)){
+			if (marca.getId().equals(marcaId)) {
 				this.marca = marca;
 			}
 		}
+	}
+
+	public void salvarMarca() {
+
+		if (validarMarca(marca)) {
+
+			UtilMock.addMarca(marca);
+			System.out.println("salvando veículo");
+
+			if (marca.getId() == null) {
+				addDetailMessage("Nova marca salva com sucesso!");
+			} else {
+				addDetailMessage("Marca alterada com sucesso!");
+			}
+		}
+		addDetailMessage("O nome deve ser preenchido",FacesMessage.SEVERITY_ERROR);
+			
+	}
+
+	public boolean validarMarca(Marca marca) {
+		if (marca.getNome() == null || marca.getNome().isEmpty()) {
+			return false;
+		}
+		return true;
+	}
+
+	public void limpar() {
+		marca = new Marca();
 	}
 
 	public Marca getMarca() {

@@ -20,10 +20,10 @@
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <div id="main-buttons" class="hidden-sm hidden-xs">
-                        <p:commandButton value="Salvar" action="#{gerenciarMarcaMB.salvarMarca()}" update="@form"
+                        <p:commandButton value="Salvar" action="#{novaMarcaMB.salvarMarca()}" update="@form"
                                          icon="fa fa-check" styleClass="btn-primary"/>
                         <p:spacer width="5" rendered="#{carFormMB.isNew()}"/>
-                        <p:commandButton value="Limpar" action="#{carFormMB.clear}" process="@this"
+                        <p:commandButton value="Limpar" action="#{novaMarcaMB.limpar()}" process="@this"
                                          icon="fa fa-refresh" styleClass="btn-success"
                                          update="@form" rendered="#{carFormMB.isNew()}" resetValues="true"/>
                         <p:spacer width="5" rendered="#{not carFormMB.isNew()}"/>
@@ -76,7 +76,7 @@
                             <p:outputLabel value="Nome" for="inptName"/>
                         </div>
                         <div class="ui-g-12">
-                            <p:inputText id="inptName" value="#{novaMarcaMB.marca.nome}"/>
+                            <p:inputText id="inptName"  value="#{novaMarcaMB.marca.nome}"/>
                         </div>
                         
                     </div>

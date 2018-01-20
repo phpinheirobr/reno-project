@@ -7,13 +7,21 @@ import com.renostarter.model.Marca;
 
 public class UtilMock {
 
+	private static List<Marca> marcas;
+
 	public static List<Marca> getMarcas(Integer quantidade) {
 
-		List<Marca> marcas = new ArrayList<>();
+		marcas = new ArrayList<>();
 
-		for (int i = 1; i < quantidade +1; i++) {
+		for (int i = 1; i < quantidade + 1; i++) {
 			marcas.add(new Marca(i, "marca-teste" + i));
 		}
 		return marcas;
 	}
+
+	public static List<Marca> addMarca(Marca marca) {
+		marcas.add(marca);
+		return marcas;
+	}
+
 }

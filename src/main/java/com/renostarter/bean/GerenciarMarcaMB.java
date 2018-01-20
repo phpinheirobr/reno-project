@@ -38,15 +38,7 @@ public class GerenciarMarcaMB implements Serializable {
 
 	}
 
-	public void salvarMarca() {
-		// codigo que salva marca
-
-		System.out.println("salvando veículo");
-		listaMarca.add(marca);
-		addDetailMessage("Nova marca salva com sucesso!");
-
-	}
-
+	
 	public void excluirMarca() {
 
 	}
