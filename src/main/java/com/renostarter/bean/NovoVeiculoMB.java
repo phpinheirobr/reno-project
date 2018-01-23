@@ -32,6 +32,7 @@ public class NovoVeiculoMB implements Serializable {
 	@PostConstruct
 	public void init() {
 		recuperaIdVeiculo();
+		inicializaObjetos();
 	}
 
 	public void inicializaObjetos() {
@@ -52,9 +53,9 @@ public class NovoVeiculoMB implements Serializable {
 	public void salvarMarca() {
 
 		if (validarVeiculo(veiculo)) {
-			
-		}else{
-			addDetailMessage("O nome deve ser preenchido",FacesMessage.SEVERITY_ERROR);
+
+		} else {
+			addDetailMessage("O nome deve ser preenchido", FacesMessage.SEVERITY_ERROR);
 		}
 	}
 
@@ -64,6 +65,7 @@ public class NovoVeiculoMB implements Serializable {
 		}
 		return true;
 	}
+
 	public void limpar() {
 		veiculo = new Veiculo();
 	}
@@ -74,6 +76,14 @@ public class NovoVeiculoMB implements Serializable {
 
 	public void setVeiculo(Veiculo veiculo) {
 		this.veiculo = veiculo;
+	}
+
+	public Integer getVaiculoId() {
+		return vaiculoId;
+	}
+
+	public void setVaiculoId(Integer vaiculoId) {
+		this.vaiculoId = vaiculoId;
 	}
 
 }

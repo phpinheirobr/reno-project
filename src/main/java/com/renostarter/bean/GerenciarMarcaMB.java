@@ -1,7 +1,5 @@
 package com.renostarter.bean;
 
-import static com.renostarter.util.Utils.addDetailMessage;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
