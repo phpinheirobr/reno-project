@@ -3,11 +3,14 @@ package com.renostarter.bean;
 import static com.renostarter.util.Utils.addDetailMessage;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import javax.inject.Named;
 
 import org.omnifaces.cdi.ViewScoped;
@@ -24,20 +27,26 @@ public class NovoVeiculoMB implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
 	private Veiculo veiculo;
-
 	private Integer vaiculoId;
+	private List<SelectItem> listaAno;
+	private List<SelectItem> listaCor;
+	private List<SelectItem> listaMarca;
 
 	@PostConstruct
 	public void init() {
 		recuperaIdVeiculo();
 		inicializaObjetos();
+
 	}
 
 	public void inicializaObjetos() {
 
 		veiculo = new Veiculo();
+		listaCor = new ArrayList<>();
+		listaAno = new ArrayList<>();
+		listaMarca = new ArrayList<>();
+
 	}
 
 	public void recuperaIdVeiculo() {
@@ -86,4 +95,35 @@ public class NovoVeiculoMB implements Serializable {
 		this.vaiculoId = vaiculoId;
 	}
 
+	public List<SelectItem> getListaCor() {
+
+		if (listaCor == null || listaCor.isEmpty()) {
+			this.listaCor = UtilMock.getCor(5);
+
+		}
+		return listaCor;
+
+	}
+
+	public void setListaCor(List<SelectItem> listaCor) {
+		this.listaCor = listaCor;
+	}
+
+	public List<SelectItem> getListaAno() {
+		this.listaAno = UtilMock.getAno(1990);
+		return listaAno;
+	}
+
+	public void setListaAno(List<SelectItem> listaAno) {
+		this.listaAno = listaAno;
+	}
+
+	public List<SelectItem> getListaMarca() {
+		return listaMarca;
+
+	}
+
+	public void setListaMarca(List<SelectItem> listaMarca) {
+		this.listaMarca = listaMarca;
+	}
 }
