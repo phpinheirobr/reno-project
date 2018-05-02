@@ -20,8 +20,8 @@
 			<div class="box box-primary">
 				<div class="box-header with-border">
 					<div id="main-buttons" class="hidden-sm hidden-xs">
-						<p:commandButton value="Salvar"
-							action="#{novoVeiculoMB.salvarMarca()}" update="@form"
+						<p:commandButton value="Salvar" type="submit"
+							action="#{novoVeiculoMB.salvarVeiculo(novoVeiculoMB.veiculo)}" update="@form"
 							icon="fa fa-check" styleClass="btn-primary" />
 						<p:spacer width="5" rendered="#{carFormMB.isNew()}" />
 						<p:commandButton value="Limpar" action="#{novoVeiculoMB.limpar()}"
@@ -32,8 +32,7 @@
 						<p:commandButton value="Delete" action="#{carFormMB.remove}"
 							process="@this" rendered="#{not carFormMB.isNew()}"
 							icon="fa fa-trash" styleClass="btn-danger">
-							<f:setPropertyActionListener value="true"
-								target="#{facesContext.externalContext.flash.keepMessages}" />
+						
 							<p:confirm header="Confirmation" message="Are you sure?"
 								icon="ui-icon-danger" />
 						</p:commandButton>
@@ -51,35 +50,24 @@
 						<div class="ui-g-12">
 							<p:outputLabel value="Código" for="inputId"
 								rendered="#{novoVeiculoMB.veiculo.id > 0 }" />
-						</div>
-						<div class="ui-g-12">
 							<p:inputText id="inputId" disabled="true"
 								value="#{novoVeiculoMB.veiculo.id} "
 								rendered="#{novoVeiculoMB.veiculo.id > 0 }" />
 						</div>
 
-
-
-
 						<div class="ui-g-12">
 							<p:outputLabel value="Nome" for="inputName" />
-						</div>
-						<div class="ui-g-12">
 							<p:inputText id="inputName" value="#{novoVeiculoMB.veiculo.nome}" />
 						</div>
 
 						<div class="ui-g-12">
 							<p:outputLabel value="Placa" for="inputPlaca" />
-						</div>
-						<div class="ui-g-12">
-							<p:inputMask mask="AAA-9999" id="inputPlaca"
+							<p:inputMask mask="aaa-9999" id="inputPlaca"
 								value="#{novoVeiculoMB.veiculo.placa}" />
 						</div>
 
 						<div class="ui-g-12">
 							<p:outputLabel value="Quantidade de Portas" for="inputPortas" />
-						</div>
-						<div class="ui-g-12">
 							<p:selectOneMenu id="inputPortas" style="width:12px"
 								value="#{novoVeiculoMB.veiculo.qtdPorta}">
 								<f:selectItem itemLabel="Selecione a quantidade de portas"
@@ -90,58 +78,41 @@
 							</p:selectOneMenu>
 						</div>
 
-
 						<div class="ui-g-12">
 							<p:outputLabel value="Quilometragem" for="inputQuilometragem" />
-						</div>
-						<div class="ui-g-12">
 							<p:inputText id="inputQuilometragem"
+								label="Digite uma quilometragem"
 								value="#{novoVeiculoMB.veiculo.quilometragem}" />
 						</div>
 
 						<div class="ui-g-12">
 							<p:outputLabel value="Cor" />
-						</div>
-						<div class="ui-g-12">
-
-
 							<p:selectOneMenu id="inputCor" style="widht:12px"
 								value="#{novoVeiculoMB.veiculo.cor}">
+								<f:selectItem itemLabel="Selecione a Cor" itemValue="" />
 								<f:selectItems value="#{novoVeiculoMB.getListaCor()}" />
-
-
-
 							</p:selectOneMenu>
-
-
-
 						</div>
 
 						<div class="ui-g-12">
 							<p:outputLabel value="Ano de Fabricação" />
+							<p:selectOneMenu id="inputFabricacao" style="widht:12px"
+								value="#{novoVeiculoMB.veiculo.anoFabricacao}">
+								<f:selectItem itemLabel="Selecione o ano" itemValue="" />
+								<f:selectItems value="#{novoVeiculoMB.getListaAno()}" />
+							</p:selectOneMenu>
 						</div>
-<div class="ui-g-12">
-						<p:selectOneMenu id="inputFabricacao" style="widht:12px"
-							value="#{novoVeiculoMB.veiculo.anoFabricacao}">
-							<f:selectItems value="#{novoVeiculoMB.getListaAno()}" />
-						</p:selectOneMenu>
-						</div>
-						
-						
-						
 
 						<div class="ui-g-12">
 							<p:outputLabel value="Marca" for="inputMarca" />
-						</div>
-						<div class="ui-g-12">
 							<p:selectOneMenu id="inputMarca"
-								value="#{novoVeiculoMB.veiculo.marca}" />
-								<f:selectItems value="#{novoVeiculoMB.getListaMarca()}"/>
+								value="#{novoVeiculoMB.veiculo.marca}">
+								<f:selectItem itemLabel="Selecione a marca" itemValue="" />
+								<f:selectItems value="#{novoVeiculoMB.getListaMarca()}"
+									var="marca" itemLabel="#{marca.nome}" itemValue="#{marca.id}" />
+							</p:selectOneMenu>
+						
 						</div>
-
-
-
-
 					</div>
 				</div>
 			</div>

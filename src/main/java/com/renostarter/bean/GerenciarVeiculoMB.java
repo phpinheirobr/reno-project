@@ -16,12 +16,10 @@ import com.renostarter.model.Veiculo;
 @ViewScoped
 public class GerenciarVeiculoMB implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	private List<Veiculo> listaVeiculo;
+
 
 	@PostConstruct
 	public void init() {
@@ -31,6 +29,21 @@ public class GerenciarVeiculoMB implements Serializable {
 	public void inicializaObjetos() {
 		listaVeiculo = new ArrayList<>();
 	}
+	
+	
+	public void salvarVeiculo(Veiculo veiculo){
+		veiculo.setId(listaVeiculo.stream()
+                .mapToInt(c -> c.getId())
+                .max()
+                .getAsInt()+1);
+        listaVeiculo.add(veiculo);
+        System.out.println("Gerenciar veiculo");
+		
+	}
+	
+	
+	
+	
 
 	public List<Veiculo> getListaVeiculo() {
 		return listaVeiculo;

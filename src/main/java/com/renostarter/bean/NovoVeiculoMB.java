@@ -31,7 +31,9 @@ public class NovoVeiculoMB implements Serializable {
 	private Integer vaiculoId;
 	private List<SelectItem> listaAno;
 	private List<SelectItem> listaCor;
-	private List<SelectItem> listaMarca;
+	private List<Marca> listaMarca;
+	private List<Veiculo> listSalvarVeiculo;
+	private GerenciarVeiculoMB gerenciarVeiculo;
 
 	@PostConstruct
 	public void init() {
@@ -46,6 +48,7 @@ public class NovoVeiculoMB implements Serializable {
 		listaCor = new ArrayList<>();
 		listaAno = new ArrayList<>();
 		listaMarca = new ArrayList<>();
+		listSalvarVeiculo = new ArrayList<>();
 
 	}
 
@@ -53,19 +56,15 @@ public class NovoVeiculoMB implements Serializable {
 
 		Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 		String vaiculoId;
-		vaiculoId = params.get("vaiculoId");
+		vaiculoId = params.get("Código");
 		if (vaiculoId != null) {
 			this.vaiculoId = Integer.parseInt(vaiculoId);
 		}
 	}
 
-	public void salvarMarca() {
-
-		if (validarVeiculo(veiculo)) {
-
-		} else {
-			addDetailMessage("O nome deve ser preenchido", FacesMessage.SEVERITY_ERROR);
-		}
+	public void salvarVeiculo(Veiculo veiculo) {
+		System.out.println("salvar veiculo");
+		System.out.println(veiculo.getId());
 	}
 
 	public boolean validarVeiculo(Veiculo veiculo) {
@@ -118,12 +117,12 @@ public class NovoVeiculoMB implements Serializable {
 		this.listaAno = listaAno;
 	}
 
-	public List<SelectItem> getListaMarca() {
+	public List<Marca> getListaMarca() {
+		this.listaMarca = UtilMock.getMarcas(5);
 		return listaMarca;
-
 	}
 
-	public void setListaMarca(List<SelectItem> listaMarca) {
+	public void setListaMarca(List<Marca> listaMarca) {
 		this.listaMarca = listaMarca;
 	}
 }
