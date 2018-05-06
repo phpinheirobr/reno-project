@@ -1,32 +1,30 @@
 package com.renostarter.infra.converter;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-import java.util.UUID;
 
-@FacesConverter(value = "entityConverter")
-public class EntityConverter implements Converter {
+@FacesConverter(value = "anoConverter")
+public class AnoConverter implements Converter {
 
 	@Override
-	public String getAsString(FacesContext context, UIComponent component, Object entity) {
-		if (entity == null || "".equals(entity)) {
-			return null;
+	public String getAsString(FacesContext context, UIComponent component, Object objetcAno) {
+		if (objetcAno != "") {
+			Date ano = (Date) objetcAno;
+			return new SimpleDateFormat("YYYY").format(ano);
+
 		}
-		
-		if (!getEntityMap(context).containsKey(entity)) {
-			String uuid = UUID.randomUUID().toString();
-			getEntityMap(context).put(entity, uuid);
-			return uuid;
-		} else {
-			return getEntityMap(context).get(entity);
-		}
+		return null;
+
 	}
 
 	@Override
@@ -39,7 +37,7 @@ public class EntityConverter implements Converter {
 		}
 		return null;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	private Map<Object, String> getEntityMap(FacesContext context) {
 		Map<String, Object> viewMap = context.getViewRoot().getViewMap();

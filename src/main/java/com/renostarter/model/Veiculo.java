@@ -1,5 +1,7 @@
 package com.renostarter.model;
 
+import java.util.Date;
+
 public class Veiculo {
 
 	private Integer id;
@@ -8,7 +10,7 @@ public class Veiculo {
 	private Integer qtdPorta;
 	private Integer quilometragem;
 	private Cor cor;
-	private AnoFab anoFabricacao;
+	private Date anoFabricacao;
 	private Marca marca;
 
 	public Integer getId() {
@@ -59,11 +61,11 @@ public class Veiculo {
 		this.cor = cor;
 	}
 
-	public AnoFab getAnoFabricacao() {
+	public Date getAnoFabricacao() {
 		return anoFabricacao;
 	}
 
-	public void setAnoFabricacao(AnoFab anoFabricacao) {
+	public void setAnoFabricacao(Date anoFabricacao) {
 		this.anoFabricacao = anoFabricacao;
 	}
 

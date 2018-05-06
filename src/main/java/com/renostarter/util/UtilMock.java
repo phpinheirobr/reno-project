@@ -1,7 +1,10 @@
 package com.renostarter.util;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.model.SelectItem;
@@ -36,6 +39,21 @@ public class UtilMock implements Serializable {
 			cor.add(new SelectItem(i, "cor-teste" + i));
 		}
 		return cor;
+	}
+
+	public static List<String> getAnos() {
+
+		List<String> anos = new ArrayList<String>();
+		Calendar now = Calendar.getInstance();
+
+		for (int i = 0; i < 40; i++) {
+
+			now.add(now.YEAR, -1);
+			Date nextYear = now.getTime();
+			anos.add(new SimpleDateFormat("YYYY").format(nextYear));
+
+		}
+		return anos;
 	}
 
 	public static List<SelectItem> getAno(Integer data) {

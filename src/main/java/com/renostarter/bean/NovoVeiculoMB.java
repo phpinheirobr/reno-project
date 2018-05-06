@@ -1,14 +1,12 @@
 package com.renostarter.bean;
 
-import static com.renostarter.util.Utils.addDetailMessage;
-
 import java.io.Serializable;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.inject.Named;
@@ -17,6 +15,7 @@ import org.omnifaces.cdi.ViewScoped;
 
 import com.renostarter.model.Marca;
 import com.renostarter.model.Veiculo;
+import com.renostarter.util.DateUtil;
 import com.renostarter.util.UtilMock;
 
 @Named
@@ -30,23 +29,30 @@ public class NovoVeiculoMB implements Serializable {
 	private Veiculo veiculo;
 	private Integer vaiculoId;
 	private List<SelectItem> listaAno;
+	private List<String> listaAnoDate;
 	private List<SelectItem> listaCor;
 	private List<Marca> listaMarca;
 	private List<Veiculo> listSalvarVeiculo;
+	private String anoSelecionado;
 	private GerenciarVeiculoMB gerenciarVeiculo;
 
 	@PostConstruct
 	public void init() {
 		recuperaIdVeiculo();
 		inicializaObjetos();
+		listaAnoDate = UtilMock.getAnos();
+		this.listaAno = UtilMock.getAno(30);
 
 	}
+
+
 
 	public void inicializaObjetos() {
 
 		veiculo = new Veiculo();
 		listaCor = new ArrayList<>();
 		listaAno = new ArrayList<>();
+		listaAnoDate = new ArrayList<>();
 		listaMarca = new ArrayList<>();
 		listSalvarVeiculo = new ArrayList<>();
 
@@ -62,9 +68,9 @@ public class NovoVeiculoMB implements Serializable {
 		}
 	}
 
-	public void salvarVeiculo(Veiculo veiculo) {
+	public void salvarVeiculo() {
 		System.out.println("salvar veiculo");
-		System.out.println(veiculo.getId());
+		veiculo.setAnoFabricacao(DateUtil.stringToDate(anoSelecionado));
 	}
 
 	public boolean validarVeiculo(Veiculo veiculo) {
@@ -108,8 +114,10 @@ public class NovoVeiculoMB implements Serializable {
 		this.listaCor = listaCor;
 	}
 
+	// esse metdo nao esta mais sendo chamdo ele foi la pra cima blz no pos
+	// construct
 	public List<SelectItem> getListaAno() {
-		this.listaAno = UtilMock.getAno(1990);
+
 		return listaAno;
 	}
 
@@ -125,4 +133,22 @@ public class NovoVeiculoMB implements Serializable {
 	public void setListaMarca(List<Marca> listaMarca) {
 		this.listaMarca = listaMarca;
 	}
+
+	public String getAnoSelecionado() {
+		return anoSelecionado;
+	}
+
+	public void setAnoSelecionado(String anoSelecionado) throws ParseException {
+		this.anoSelecionado = anoSelecionado;
+
+	}
+
+	public List<String> getListaAnoDate() {
+		return listaAnoDate;
+	}
+
+	public void setListaAnoDate(List<String> listaAnoDate) {
+		this.listaAnoDate = listaAnoDate;
+	}
+
 }

@@ -4,6 +4,9 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+
 	xmlns:adm="http://github.com/adminfaces" template="#{layoutMB.layout}">
 
 	<ui:define name="title">
@@ -14,16 +17,15 @@
 
 
 
-		<h:form id="form" prependId="false">
+		<h:form id="form">
 
 
 			<div class="box box-primary">
 				<div class="box-header with-border">
 					<div id="main-buttons" class="hidden-sm hidden-xs">
-						<p:commandButton value="Salvar" type="submit"
-							action="#{novoVeiculoMB.salvarVeiculo(novoVeiculoMB.veiculo)}" update="@form"
-							icon="fa fa-check" styleClass="btn-primary" />
-						<p:spacer width="5" rendered="#{carFormMB.isNew()}" />
+						<p:commandButton action="#{novoVeiculoMB.salvarVeiculo()}" value="Salvar" 
+							 icon="fa fa-check" styleClass="btn-primary" />
+						<p:spacer width="5" />
 						<p:commandButton value="Limpar" action="#{novoVeiculoMB.limpar()}"
 							process="@this" icon="fa fa-refresh" styleClass="btn-success"
 							update="@form" rendered="#{carFormMB.isNew()}" resetValues="true" />
@@ -32,7 +34,7 @@
 						<p:commandButton value="Delete" action="#{carFormMB.remove}"
 							process="@this" rendered="#{not carFormMB.isNew()}"
 							icon="fa fa-trash" styleClass="btn-danger">
-						
+
 							<p:confirm header="Confirmation" message="Are you sure?"
 								icon="ui-icon-danger" />
 						</p:commandButton>
@@ -96,10 +98,13 @@
 
 						<div class="ui-g-12">
 							<p:outputLabel value="Ano de Fabricação" />
-							<p:selectOneMenu id="inputFabricacao" style="widht:12px"
-								value="#{novoVeiculoMB.veiculo.anoFabricacao}">
+							
+							<p:selectOneMenu   id="inputFabricacao"
+							 style="widht:12px" value="#{novoVeiculoMB.anoSelecionado}">
+							 
 								<f:selectItem itemLabel="Selecione o ano" itemValue="" />
-								<f:selectItems value="#{novoVeiculoMB.getListaAno()}" />
+								<f:selectItems var="ano" itemValue="#{ano.toString()}" value="#{novoVeiculoMB.listaAnoDate}" 
+								   />
 							</p:selectOneMenu>
 						</div>
 
@@ -108,24 +113,24 @@
 							<p:selectOneMenu id="inputMarca"
 								value="#{novoVeiculoMB.veiculo.marca}">
 								<f:selectItem itemLabel="Selecione a marca" itemValue="" />
-								<f:selectItems value="#{novoVeiculoMB.getListaMarca()}"
+								<f:selectItems value="#{novoVeiculoMB.listaAno}"
 									var="marca" itemLabel="#{marca.nome}" itemValue="#{marca.id}" />
 							</p:selectOneMenu>
-						
+
 						</div>
 					</div>
 				</div>
 			</div>
 
 
-			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+			<!-- <p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
 				styleClass="box-danger">
 				<p:commandButton value="Yes" type="button"
 					styleClass="btn-primary ui-confirmdialog-yes" icon="fa fa-check" />
 				<p:commandButton value="No" type="button"
 					styleClass="btn-danger ui-confirmdialog-no" icon="fa fa-close" />
 			</p:confirmDialog>
-		</h:form>
+ -->		</h:form>
 
 
 	</ui:define>
