@@ -2,15 +2,41 @@ package com.renostarter.model;
 
 import java.util.Date;
 
-public class Veiculo {
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
+@Entity(name = "veiculo")
+public class Veiculo {
+	
+	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+
+	@Column(name = "nome")
 	private String nome;
+
 	private String placa;
+	
 	private Integer qtdPorta;
+	
 	private Integer quilometragem;
+	
 	private Cor cor;
+	@Column(name = "ano")
 	private Date anoFabricacao;
+
+	@OneToOne(cascade= CascadeType.PERSIST)
+	@JoinColumn(name = "id_marca")
 	private Marca marca;
 
 	public Integer getId() {
